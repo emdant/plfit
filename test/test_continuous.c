@@ -22,35 +22,35 @@
 #include "test_common.h"
 
 int test_continuous() {
-	plfit_result_t result;
-	plfit_continuous_options_t options;
-	double data[10000];
-	size_t n;
+  plfit_result_t result;
+  plfit_continuous_options_t options;
+  double data[10000];
+  size_t n;
 
-	plfit_continuous_options_init(&options);
-    options.p_value_method = PLFIT_P_VALUE_SKIP;
+  plfit_continuous_options_init(&options);
+  options.p_value_method = PLFIT_P_VALUE_SKIP;
 
-	n = test_read_file("continuous_data.txt", data, 10000);
+  n = test_read_file("continuous_data.txt", data, 10000);
 
-	result.alpha = 2.53282;
-	result.xmin = 1.43628;
-	plfit_log_likelihood_continuous(data, n, result.alpha, result.xmin, &result.L);
-	ASSERT_ALMOST_EQUAL(result.L, -9276.42, 1e-1);
+  result.alpha = 2.53282;
+  result.xmin = 1.43628;
+  plfit_log_likelihood_continuous(data, n, result.alpha, result.xmin, &result.L);
+  ASSERT_ALMOST_EQUAL(result.L, -9276.42, 1e-1);
 
-	result.alpha = 0;
-	result.xmin = 1.43628;
-	plfit_estimate_alpha_continuous(data, n, result.xmin, &options, &result);
-	ASSERT_ALMOST_EQUAL(result.alpha, 2.53282, 1e-4);
+  result.alpha = 0;
+  result.xmin = 1.43628;
+  plfit_estimate_alpha_continuous(data, n, result.xmin, &options, &result);
+  ASSERT_ALMOST_EQUAL(result.alpha, 2.53282, 1e-4);
 
-	result.alpha = result.xmin = result.L = 0;
-	plfit_continuous(data, n, &options, &result);
-	ASSERT_ALMOST_EQUAL(result.xmin, 1.43628, 1e-4);
-	ASSERT_ALMOST_EQUAL(result.alpha, 2.53282, 1e-4);
-	ASSERT_ALMOST_EQUAL(result.L, -9276.42, 1e-1);
+  result.alpha = result.xmin = result.L = 0;
+  plfit_continuous(data, n, &options, &result);
+  ASSERT_ALMOST_EQUAL(result.xmin, 1.43628, 1e-4);
+  ASSERT_ALMOST_EQUAL(result.alpha, 2.53282, 1e-4);
+  ASSERT_ALMOST_EQUAL(result.L, -9276.42, 1e-1);
 
-	return 0;
+  return 0;
 }
 
 int main(int argc, char* argv[]) {
-	return test_continuous();
+  return test_continuous();
 }

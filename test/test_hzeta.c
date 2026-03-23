@@ -22,17 +22,17 @@
 #include "test_common.h"
 
 int test_hsl_sf_lnhzeta() {
-    double alpha = 2.58;
-    double xmin = 2;
+  double alpha = 2.58;
+  double xmin = 2;
 
-    ASSERT_ALMOST_EQUAL(hsl_sf_lnhzeta(alpha, xmin), -1.16389915, 1e-6);
+  ASSERT_ALMOST_EQUAL(hsl_sf_lnhzeta(alpha, xmin), -1.16389915, 1e-6);
 
-    return 0;
+  return 0;
 }
 
 int main(int argc, char* argv[]) {
-    RUN_TEST_CASE(
-        test_hsl_sf_lnhzeta,
-        "lnhzeta() calculation smoke test"
-    );
+  RUN_TEST_CASE(
+      test_hsl_sf_lnhzeta,
+      "lnhzeta() calculation smoke test"
+  );
 }

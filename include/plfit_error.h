@@ -25,36 +25,36 @@
 __BEGIN_DECLS
 
 enum {
-	PLFIT_SUCCESS  = 0,
-	PLFIT_FAILURE  = 1,
-	PLFIT_EINVAL   = 2,
-	PLFIT_UNDRFLOW = 3,
-	PLFIT_OVERFLOW = 4,
-	PLFIT_ENOMEM   = 5,
-	PLFIT_EMAXITER = 6
+  PLFIT_SUCCESS = 0,
+  PLFIT_FAILURE = 1,
+  PLFIT_EINVAL = 2,
+  PLFIT_UNDRFLOW = 3,
+  PLFIT_OVERFLOW = 4,
+  PLFIT_ENOMEM = 5,
+  PLFIT_EMAXITER = 6
 };
 
 #if (defined(__GNUC__) && GCC_VERSION_MAJOR >= 3)
-#  define PLFIT_UNLIKELY(a) __builtin_expect((a), 0)
-#  define PLFIT_LIKELY(a)   __builtin_expect((a), 1)
+#define PLFIT_UNLIKELY(a) __builtin_expect((a), 0)
+#define PLFIT_LIKELY(a) __builtin_expect((a), 1)
 #else
-#  define PLFIT_UNLIKELY(a) a
-#  define PLFIT_LIKELY(a)   a
+#define PLFIT_UNLIKELY(a) a
+#define PLFIT_LIKELY(a) a
 #endif
 
-#define PLFIT_CHECK(a) \
-	do {\
-		int plfit_i_ret=(a); \
-		if (PLFIT_UNLIKELY(plfit_i_ret != PLFIT_SUCCESS)) {\
-			return plfit_i_ret; \
-		} \
-	} while (0)
+#define PLFIT_CHECK(a)                                  \
+  do {                                                  \
+    int plfit_i_ret = (a);                              \
+    if (PLFIT_UNLIKELY(plfit_i_ret != PLFIT_SUCCESS)) { \
+      return plfit_i_ret;                               \
+    }                                                   \
+  } while (0)
 
-#define PLFIT_ERROR(reason,plfit_errno) \
-	do {\
-		plfit_error (reason, __FILE__, __LINE__, plfit_errno) ; \
-		return plfit_errno ; \
-	} while (0)
+#define PLFIT_ERROR(reason, plfit_errno)                  \
+  do {                                                    \
+    plfit_error(reason, __FILE__, __LINE__, plfit_errno); \
+    return plfit_errno;                                   \
+  } while (0)
 
 typedef void plfit_error_handler_t(const char*, const char*, int, int);
 
@@ -64,7 +64,7 @@ PLFIT_EXPORT extern plfit_error_handler_t plfit_error_handler_printignore;
 
 PLFIT_EXPORT plfit_error_handler_t* plfit_set_error_handler(plfit_error_handler_t* new_handler);
 
-PLFIT_EXPORT void plfit_error(const char *reason, const char *file, int line, int plfit_errno);
+PLFIT_EXPORT void plfit_error(const char* reason, const char* file, int line, int plfit_errno);
 PLFIT_EXPORT const char* plfit_strerror(const int plfit_errno);
 
 __END_DECLS

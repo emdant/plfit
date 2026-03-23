@@ -20,36 +20,36 @@
 #include "test_common.h"
 
 size_t test_read_file(const char* fname, double* data, size_t max_n) {
-	size_t n = 0;
-	const char* prefixes[] = {
-		"./",
-		"../data/",
-		"../../data/",
+  size_t n = 0;
+  const char* prefixes[] = {
+      "./",
+      "../data/",
+      "../../data/",
 #ifdef DATADIR
-		DATADIR "/" ,
+      DATADIR "/",
 #endif
-		0 };
-	const char** prefix_ptr;
-	char fname_with_path[4096];
-	FILE* f = 0;
+      0
+  };
+  const char** prefix_ptr;
+  char fname_with_path[4096];
+  FILE* f = 0;
 
-	for (prefix_ptr = prefixes; *prefix_ptr && f == 0; prefix_ptr++) {
-		snprintf(fname_with_path, sizeof(fname_with_path), "%s%s",
-				*prefix_ptr, fname);
-		f = fopen(fname_with_path, "r");
-	}
+  for (prefix_ptr = prefixes; *prefix_ptr && f == 0; prefix_ptr++) {
+    snprintf(fname_with_path, sizeof(fname_with_path), "%s%s", *prefix_ptr, fname);
+    f = fopen(fname_with_path, "r");
+  }
 
-	if (!f) {
-		fprintf(stderr, "error: cannot find data file %s\n", fname);
-		exit(1);
-	}
+  if (!f) {
+    fprintf(stderr, "error: cannot find data file %s\n", fname);
+    exit(1);
+  }
 
-	while (!feof(f) && n < max_n) {
-		if (fscanf(f, "%lf", data+n)) {
-			n++;
-		}
-	}
+  while (!feof(f) && n < max_n) {
+    if (fscanf(f, "%lf", data + n)) {
+      n++;
+    }
+  }
 
-	fclose(f);
-	return n;
+  fclose(f);
+  return n;
 }

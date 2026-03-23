@@ -20,9 +20,9 @@
 #ifndef PLFIT_SAMPLING_H
 #define PLFIT_SAMPLING_H
 
-#include <stdlib.h>
 #include "plfit_decls.h"
 #include "plfit_mt.h"
+#include <stdlib.h>
 
 __BEGIN_DECLS
 
@@ -67,8 +67,7 @@ PLFIT_EXPORT extern double plfit_rpareto(double xmin, double alpha, plfit_mt_rng
  *
  * \return \c PLFIT_EINVAL if one of the parameters is invalid, zero otherwise
  */
-PLFIT_EXPORT int plfit_rpareto_array(double xmin, double alpha, size_t n, plfit_mt_rng_t* rng,
-        double* result);
+PLFIT_EXPORT int plfit_rpareto_array(double xmin, double alpha, size_t n, plfit_mt_rng_t* rng, double* result);
 
 /**
  * Draws a sample from a zeta distribution with the given minimum value and
@@ -95,8 +94,7 @@ PLFIT_EXPORT extern double plfit_rzeta(long int xmin, double alpha, plfit_mt_rng
  *
  * \return \c PLFIT_EINVAL if one of the parameters is invalid, zero otherwise
  */
-PLFIT_EXPORT int plfit_rzeta_array(long int xmin, double alpha, size_t n, plfit_mt_rng_t* rng,
-        double* result);
+PLFIT_EXPORT int plfit_rzeta_array(long int xmin, double alpha, size_t n, plfit_mt_rng_t* rng, double* result);
 
 /**
  * Draws a sample from a uniform distribution with the given lower and
@@ -125,9 +123,9 @@ PLFIT_EXPORT extern double plfit_runif_01(plfit_mt_rng_t* rng);
  * Random sampler using Walker's alias method.
  */
 typedef struct {
-    long int num_bins;            /**< Number of bins */
-    long int* indexes;            /**< Index of the "other" element in each bin */
-    double* probs;                /**< Probability of drawing the "own" element from a bin */
+  long int num_bins; /**< Number of bins */
+  long int* indexes; /**< Index of the "other" element in each bin */
+  double* probs;     /**< Probability of drawing the "own" element from a bin */
 } plfit_walker_alias_sampler_t;
 
 /**
@@ -139,8 +137,7 @@ typedef struct {
  * \param  n    the number of items in the array
  * \return error code
  */
-PLFIT_EXPORT int plfit_walker_alias_sampler_init(plfit_walker_alias_sampler_t* sampler,
-        double* ps, size_t n);
+PLFIT_EXPORT int plfit_walker_alias_sampler_init(plfit_walker_alias_sampler_t* sampler, double* ps, size_t n);
 
 /**
  * \brief Destroys an initialized sampler and frees the allocated memory.
@@ -160,8 +157,7 @@ PLFIT_EXPORT void plfit_walker_alias_sampler_destroy(plfit_walker_alias_sampler_
  * \param  rng      the Mersenne Twister random number generator to use
  * \return error code
  */
-PLFIT_EXPORT int plfit_walker_alias_sampler_sample(const plfit_walker_alias_sampler_t* sampler,
-        long int* xs, size_t n, plfit_mt_rng_t* rng);
+PLFIT_EXPORT int plfit_walker_alias_sampler_sample(const plfit_walker_alias_sampler_t* sampler, long int* xs, size_t n, plfit_mt_rng_t* rng);
 
 __END_DECLS
 

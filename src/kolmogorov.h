@@ -20,8 +20,8 @@
 #ifndef __KOLMOGOROV_H__
 #define __KOLMOGOROV_H__
 
-#include <stdlib.h>
 #include "plfit_decls.h"
+#include <stdlib.h>
 
 __BEGIN_DECLS
 

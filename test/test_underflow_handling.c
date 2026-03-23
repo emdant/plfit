@@ -22,37 +22,37 @@
 #include "test_common.h"
 
 int test_underflow_handling() {
-	plfit_result_t result;
-	plfit_discrete_options_t options;
-	double data[10000];
-	size_t n;
+  plfit_result_t result;
+  plfit_discrete_options_t options;
+  double data[10000];
+  size_t n;
 
-	plfit_discrete_options_init(&options);
-    options.p_value_method = PLFIT_P_VALUE_SKIP;
+  plfit_discrete_options_init(&options);
+  options.p_value_method = PLFIT_P_VALUE_SKIP;
 
-	n = test_read_file("underflow_regression_test_1.txt", data, 10000);
-	ASSERT_NONZERO(n);
+  n = test_read_file("underflow_regression_test_1.txt", data, 10000);
+  ASSERT_NONZERO(n);
 
-	/* I am not testing the expected outcome here because I don't know
-	 * for sure what the output should be. All that we are about is that
-	 * the calculation should not fail with an underflow error */
-	if (plfit_discrete(data, n, &options, &result)) {
-		return 1;
-	}
+  /* I am not testing the expected outcome here because I don't know
+   * for sure what the output should be. All that we are about is that
+   * the calculation should not fail with an underflow error */
+  if (plfit_discrete(data, n, &options, &result)) {
+    return 1;
+  }
 
-	n = test_read_file("underflow_regression_test_2.txt", data, 10000);
-	ASSERT_NONZERO(n);
+  n = test_read_file("underflow_regression_test_2.txt", data, 10000);
+  ASSERT_NONZERO(n);
 
-	/* I am not testing the expected outcome here because I don't know
-	 * for sure what the output should be. All that we are about is that
-	 * the calculation should not fail with an underflow error */
-	if (plfit_log_likelihood_discrete(data, n, result.alpha, result.xmin, &result.L)) {
-		return 1;
-	}
+  /* I am not testing the expected outcome here because I don't know
+   * for sure what the output should be. All that we are about is that
+   * the calculation should not fail with an underflow error */
+  if (plfit_log_likelihood_discrete(data, n, result.alpha, result.xmin, &result.L)) {
+    return 1;
+  }
 
-	return 0;
+  return 0;
 }
 
 int main(int argc, char* argv[]) {
-	return test_underflow_handling();
+  return test_underflow_handling();
 }

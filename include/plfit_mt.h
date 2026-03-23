@@ -14,12 +14,12 @@
 #ifndef PLFIT_MT_H
 #define PLFIT_MT_H
 
-#include <stdint.h>
 #include "plfit_decls.h"
+#include <stdint.h>
 
 __BEGIN_DECLS
 
-#define PLFIT_MT_LEN       624
+#define PLFIT_MT_LEN 624
 
 /**
  * \def PLFIT_MT_RAND_MAX
@@ -33,8 +33,8 @@ __BEGIN_DECLS
  * generator.
  */
 typedef struct {
-    int mt_index;
-    uint32_t mt_buffer[PLFIT_MT_LEN];
+  int mt_index;
+  uint32_t mt_buffer[PLFIT_MT_LEN];
 } plfit_mt_rng_t;
 
 /**

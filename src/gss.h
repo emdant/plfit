@@ -28,16 +28,16 @@ __BEGIN_DECLS
  * Enum specifying what the search should do when the function is not U-shaped.
  */
 typedef enum {
-	GSS_ERROR_STOP,              /**< Stop and return an error code */
-	GSS_ERROR_WARN               /**< Continue and set the warning flag */
+  GSS_ERROR_STOP, /**< Stop and return an error code */
+  GSS_ERROR_WARN  /**< Continue and set the warning flag */
 } gss_error_handling_t;
 
 /**
  * Parameter settings for a golden section search.
  */
 typedef struct {
-    double epsilon;
-	gss_error_handling_t on_error;
+  double epsilon;
+  gss_error_handling_t on_error;
 } gss_parameter_t;
 
 /**
@@ -53,7 +53,7 @@ typedef struct {
  * @retval double      The value of the objective function for the current
  *                      variable.
  */
-typedef double (*gss_evaluate_t)(void *instance, double x);
+typedef double (*gss_evaluate_t)(void* instance, double x);
 
 /**
  * Callback interface to receive the progress of the optimization process for
@@ -75,8 +75,7 @@ typedef double (*gss_evaluate_t)(void *instance, double x);
  * @retval int         Zero to continue the optimization process. Returning a
  *                     non-zero value will cancel the optimization process.
  */
-typedef int (*gss_progress_t)(void *instance, double x, double fx, double min,
-        double fmin, double left, double right, int k);
+typedef int (*gss_progress_t)(void* instance, double x, double fx, double min, double fmin, double left, double right, int k);
 
 /**
  * Start a golden section search optimization.
@@ -111,9 +110,7 @@ typedef int (*gss_progress_t)(void *instance, double x, double fx, double min,
  *                     \c PLFIT_FAILURE means that the function is not
  *                     U-shaped.
  */
-int gss(double a, double b, double *min, double *fmin,
-        gss_evaluate_t proc_evaluate, gss_progress_t proc_progress,
-        void* instance, const gss_parameter_t *_param);
+int gss(double a, double b, double* min, double* fmin, gss_evaluate_t proc_evaluate, gss_progress_t proc_progress, void* instance, const gss_parameter_t* _param);
 
 /**
  * Return the state of the warning flag.
@@ -131,7 +128,7 @@ unsigned short int gss_get_warning_flag(void);
  *
  * @param  param       The pointer to the parameter structure.
  */
-void gss_parameter_init(gss_parameter_t *param);
+void gss_parameter_init(gss_parameter_t* param);
 
 __END_DECLS
 

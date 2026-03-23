@@ -36,7 +36,6 @@
 
 __BEGIN_DECLS
 
-
 /* Hurwitz Zeta Function
  * zeta(s,q) = Sum[ (k+q)^(-s), {k,0,Infinity} ]
  *
@@ -80,8 +79,7 @@ double hsl_sf_lnhzeta_deriv(const double s, const double q);
  *
  * s > 1.0, q > 0.0 (and q >> 1)
  */
-double hsl_sf_lnhzeta_deriv_tuple(const double s, const double q, double * deriv0, double * deriv1);
-
+double hsl_sf_lnhzeta_deriv_tuple(const double s, const double q, double* deriv0, double* deriv1);
 
 __END_DECLS
 

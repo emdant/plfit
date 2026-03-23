@@ -17,8 +17,8 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  */
 
-#include "plfit_error.h"
 #include "plfit.h"
+#include "plfit_error.h"
 
 const plfit_continuous_options_t plfit_continuous_default_options = {
     /* .finite_size_correction = */ 0,
@@ -31,22 +31,20 @@ const plfit_continuous_options_t plfit_continuous_default_options = {
 const plfit_discrete_options_t plfit_discrete_default_options = {
     /* .finite_size_correction = */ 0,
     /* .alpha_method = */ PLFIT_DEFAULT_DISCRETE_METHOD,
-    /* .alpha = */ {
-        /* .min = */ 1.01,
-        /* .max = */ 5,
-        /* .step = */ 0.01
-    },
+    /* .alpha = */ {/* .min = */ 1.01,
+                    /* .max = */ 5,
+                    /* .step = */ 0.01},
     /* .p_value_method = */ PLFIT_DEFAULT_P_VALUE_METHOD,
     /* .p_value_precision = */ 0.01,
     /* .rng = */ 0
 };
 
 int plfit_continuous_options_init(plfit_continuous_options_t* options) {
-	*options = plfit_continuous_default_options;
-	return PLFIT_SUCCESS;
+  *options = plfit_continuous_default_options;
+  return PLFIT_SUCCESS;
 }
 
 int plfit_discrete_options_init(plfit_discrete_options_t* options) {
-	*options = plfit_discrete_default_options;
-	return PLFIT_SUCCESS;
+  *options = plfit_discrete_default_options;
+  return PLFIT_SUCCESS;
 }
