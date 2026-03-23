@@ -1,4 +1,5 @@
 cmake_minimum_required(VERSION 3.12)
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 cmake_policy(VERSION 3.12)
 
 if(POLICY CMP0078)
